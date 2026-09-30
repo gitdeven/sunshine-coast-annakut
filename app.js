@@ -233,10 +233,11 @@ function renderItems(items){
             <label>
 
                 <input
-                    type="checkbox"
-                    value="${item.id}"
-                    onchange="updateSelectedItems()">
-
+            type="checkbox"
+            value="${item.id}"
+            ${selectedItemIds.includes(item.id) ? 'checked' : ''}
+            onchange="toggleSelection('${item.id}')">
+            
                 <div class="item-details">
 
                     <div class="item-name">
