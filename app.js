@@ -454,7 +454,7 @@ async function submitForm() {
 
     /* SAVE ITEMS */
 
-    for (const selectedItem of selectedItems) {
+    for (const selectedItem of itemId) {
 
 
         const { data: itemData } =
@@ -550,4 +550,3 @@ function updateSelectedItems(){
         )
         .innerHTML = html;
 }
-`
