@@ -10,6 +10,8 @@ supabase.createClient(
     SUPABASE_KEY
 );
 
+let selectedItemIds = [];
+
 let allItems = [];
 
 let selectedCategories = [];
