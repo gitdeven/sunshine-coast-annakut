@@ -454,7 +454,7 @@ async function submitForm() {
 
     /* SAVE ITEMS */
 
-    for (const selectedItem of itemId) {
+    for (const itemId of selectedItems) {
 
 
         const { data: itemData } =
