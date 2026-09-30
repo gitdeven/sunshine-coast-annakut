@@ -109,8 +109,10 @@ function toggleCategory(category)
 
     updateChipStyles();
 
+    selectedTypes = [];
+    
     populateItemTypes();
-
+    
     applyFilters();
 }
 
@@ -140,6 +142,11 @@ function populateItemTypes()
         )
     )]
     .sort();
+
+    selectedTypes =
+selectedTypes.filter(
+    type => types.includes(type)
+);
 
     let html = "";
 
