@@ -232,12 +232,12 @@ function renderItems(items){
 
             <label>
 
-                <input
+            <input
             type="checkbox"
             value="${item.id}"
             ${selectedItemIds.includes(item.id) ? 'checked' : ''}
             onchange="toggleSelection('${item.id}')">
-            
+
                 <div class="item-details">
 
                     <div class="item-name">
@@ -351,11 +351,7 @@ function toggleSelection(itemId){
 async function submitForm() {
 
     const selectedItems =
-    [
-        ...document.querySelectorAll(
-            '#items input[type="checkbox"\]:checked'
-        )
-    ];
+      selectedItemIds;
 
     if (selectedItems.length === 0) {
 
@@ -453,8 +449,6 @@ async function submitForm() {
 
     for (const selectedItem of selectedItems) {
 
-        const itemId =
-        selectedItem.value;
 
         const { data: itemData } =
         await supabaseClient
@@ -514,45 +508,39 @@ loadItems();
 
 function updateSelectedItems(){
 
-    const selected =
-    [
-      ...document.querySelectorAll(
-      '#items input[type="checkbox"\]:checked'
-      )
-    ];
-
-    if(selected.length === 0){
+    if(selectedItemIds.length === 0){
 
         document
-          .getElementById(
-             "selectedItems"
-          )
-          .innerHTML =
-          "None Selected";
+            .getElementById(
+                "selectedItems"
+            )
+            .innerHTML =
+            "None Selected";
 
         return;
     }
 
     let html = "";
 
-    selected.forEach(item => {
+    selectedItemIds.forEach(itemId => {
 
-        const row =
-        item.closest(".item-row");
+        const item =
+        allItems.find(
+            x => x.id === itemId
+        );
 
-        const name =
-        row.querySelector(
-          ".item-name"
-        ).innerText;
+        if(item){
 
-        html += `
-        ✓ ${name}<br>
-        `;
+            html += `
+            ✓ ${item.item_name}<br>
+            `;
+        }
     });
 
     document
-       .getElementById(
-          "selectedItems"
-       )
-       .innerHTML = html;
+        .getElementById(
+            "selectedItems"
+        )
+        .innerHTML = html;
 }
+`
