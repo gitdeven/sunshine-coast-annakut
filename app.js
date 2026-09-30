@@ -325,6 +325,25 @@ function applyFilters(){
     renderItems(filtered);
 }
 
+function toggleSelection(itemId){
+
+    if(
+        selectedItemIds.includes(itemId)
+    ){
+
+        selectedItemIds =
+        selectedItemIds.filter(
+            x => x !== itemId
+        );
+
+    }else{
+
+        selectedItemIds.push(itemId);
+    }
+
+    updateSelectedItems();
+}
+
 /* ==============================
    SUBMIT FORM
 ============================== */
