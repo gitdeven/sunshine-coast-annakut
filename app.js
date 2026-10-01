@@ -330,6 +330,7 @@ function applyFilters(){
     }
 
     renderItems(filtered);
+}
 
 document.addEventListener(
     "input",
@@ -343,7 +344,6 @@ document.addEventListener(
         }
     }
 );
-}
 
 function toggleSelection(itemId){
 
