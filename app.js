@@ -330,21 +330,7 @@ function applyFilters(){
     }
 
     renderItems(filtered);
-
-document.addEventListener(
-    "input",
-    function (e) {
-
-        if (
-            e.target.id ===
-            "searchBox"
-        ) {
-            applyFilters();
-        }
-    }
-);
 }
-
 function toggleSelection(itemId){
 
     if(
