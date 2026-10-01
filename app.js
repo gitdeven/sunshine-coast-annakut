@@ -368,6 +368,55 @@ function toggleSelection(itemId){
    SUBMIT FORM
 ============================== */
 
+async function sendConfirmationEmail(
+    name,
+    email,
+    phone,
+    selectedItems,
+    additional
+){
+
+    let itemReceipt = "";
+
+    let counter = 1;
+
+    selectedItems.forEach(item => {
+
+        itemReceipt +=
+`${counter}. ${item.item_name}
+
+Category: ${item.category}
+Type: ${item.item_type}
+Qty Per Thaal: ${item.qty_per_thaal}
+
+`;
+
+        counter++;
+    });
+
+    await emailjs.send(
+
+        "service_j6vhupf",
+
+        "template_ytatiqh",
+
+        {
+            full_name: name,
+            email: email,
+            phone: phone,
+
+            submission_date:
+            new Date()
+                .toLocaleString(),
+
+            items: itemReceipt,
+
+            additional_item:
+                additional || "None"
+        }
+    );
+}
+
 async function submitForm() {
 
     const selectedItems =
@@ -512,6 +561,22 @@ async function submitForm() {
                 qty_per_thaal: ""
             });
     }
+
+    const emailItems =
+    selectedItems.map(
+        itemId =>
+        allItems.find(
+            x => x.id === itemId
+        )
+    );
+    
+    await sendConfirmationEmail(
+        name,
+        email,
+        phone,
+        emailItems,
+        additional
+    );
 
     alert(
         "Jai Swaminarayan\n\nThank you for offering Annakut Seva."
