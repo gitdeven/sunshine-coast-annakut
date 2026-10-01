@@ -331,6 +331,7 @@ function applyFilters(){
 
     renderItems(filtered);
 }
+
 function toggleSelection(itemId){
 
     if(
